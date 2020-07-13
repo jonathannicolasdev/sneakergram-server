@@ -1,9 +1,0 @@
-build:
-  languages:
-    - nodejs
-  pre:
-    - yarn test
-  post:
-    - echo 'app installed'
-run:
-  web: yarn start

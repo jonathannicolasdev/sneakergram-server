@@ -1,11 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   res.status(200).send({
-    message: `Project Auth Express`,
-    documentation: `https://api.haidar.dev/docs`,
-  })
-})
+    message: `Sneakergram`,
+  });
+});
 
-module.exports = router
+module.exports = router;
