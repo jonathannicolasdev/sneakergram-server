@@ -104,3 +104,66 @@ yarn test
 ## License
 
 MIT
+
+---
+
+```
+db.createUser(
+  {
+    user: "admin",
+    pwd: passwordPrompt(),
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+```
+
+```
+db.createUser(
+   {
+     user: "sneakergram",
+     pwd:  passwordPrompt(),
+     roles: [ { role: "readWrite", db: "sneakergram" } ]
+   }
+ )
+```
+
+```
+sudo certbot certonly \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini \
+  --dns-cloudflare-propagation-seconds 60 \
+  -d sneakergram-api.jonathannicolas.dev \
+  -i nginx
+```
+
+```
+sudo certbot certonly \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials cloudflare.ini \
+  --dns-cloudflare-propagation-seconds 60 \
+  -d sneakergram.api.jonathannicolas.dev \
+  -i nginx
+```
+
+```
+server {
+        server_name sneakergram.api.jonathannicolas.dev;
+
+				listen 80;
+        listen [::]:80;
+				listen 443 ssl;
+        listen [::]:443 ssl ipv6only=on;
+
+        ssl_certificate /etc/letsencrypt/live/sneakergram.api.jonathannicolas.dev/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/sneakergram.api.jonathannicolas.dev/privkey.pem;
+
+        location / {
+                proxy_pass http://localhost:8000;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+```
