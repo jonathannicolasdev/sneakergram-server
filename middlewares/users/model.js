@@ -29,6 +29,18 @@ const UserSchema = Schema(
       type: String,
       required: [true, "Password is required"],
     },
+    avatarUrl: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+    sneakers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Sneaker",
+      },
+    ],
   },
   {
     timestamps: true,
