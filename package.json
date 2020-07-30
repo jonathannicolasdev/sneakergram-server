@@ -9,8 +9,8 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "jest",
-    "lint": "eslint *.js",
-    "postinstall": "./setup.sh"
+    "postinstall": "./setup.sh",
+    "lint": "eslint --ext .js ."
   },
   "dependencies": {
     "bcrypt": "4.0.1",
