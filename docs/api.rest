@@ -1,0 +1,5 @@
+### Get index
+GET http://localhost:8000
+
+### Seed sneakers
+POST http://localhost:8000/sneakers/seed

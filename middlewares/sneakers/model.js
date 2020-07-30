@@ -16,7 +16,7 @@ const SneakerSchema = Schema(
     },
     style: { type: String },
     colorway: { type: String },
-    retailPrice: { type: String },
+    retailPrice: { type: Number },
     releaseDate: { type: String },
     size: { type: String },
     location: { type: String },
