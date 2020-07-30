@@ -1,16 +1,12 @@
 const jwt = require("jsonwebtoken");
 
-function hello() {
-  console.log(hello1);
-}
-
 module.exports = {
   //////////////////////////////////////////////////////////////////////////////
   // CREATE A NEW TOKEN WITH PAYLOAD sub: _id
   createToken: async (foundUser) => {
     // create the payload WITHOUT having the salt & password
     const payload = {
-      sub: foundUser._id, // sub: subject: user's id
+      sub: foundUser._id, // sub: subject: user's _id
       name: foundUser.name, // name: user's full name
       email: foundUser.email, // email: user's email
       // iat: issued at: will be created automatically as UNIX timestamp
