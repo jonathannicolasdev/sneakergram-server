@@ -24,12 +24,8 @@ const usersControllers = {
         password: encryptedPassword, // NOT from body, from helpers
       }
 
-      console.log(newUser, newUser)
-
       // creating a user in the database is a slow process
       const result = await User.create(newUser)
-
-      console.log(result, result)
 
       // responding is a fast process
       res.status(201).send({
