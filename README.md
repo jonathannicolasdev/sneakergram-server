@@ -50,6 +50,38 @@
 | `/users/:id`          | `GET`    | Get one user by id             |
 | `/users/:id`          | `DELETE` | Delete one user by id          |
 
+## Data Structure
+
+### Users
+
+```json
+{
+  "name": "Jonathan",
+  "username": "jo",
+  "email": "jonathan@jonathan.com",
+  "salt": "abc",
+  "password": "abc",
+  "avatarUrl": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
+  "bio": "with a sneaker he astonished Paris",
+  "sneakers": ["abcdefghij123"]
+}
+```
+
+### Sneakers
+
+```json
+{
+  "name": "",
+  "imageUrl": "",
+  "style": "",
+  "colorway": "",
+  "retailPrice": "",
+  "releaseDate": "",
+  "size": "",
+  "location": ""
+}
+```
+
 ## Scripts
 
 ### Setup Environment Variables
