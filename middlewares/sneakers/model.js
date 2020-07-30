@@ -20,6 +20,10 @@ const SneakerSchema = Schema(
     releaseDate: { type: String },
     size: { type: String },
     location: { type: String },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,
