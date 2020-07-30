@@ -1,13 +1,13 @@
 require("dotenv").config();
 
 const express = require("express");
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
 const indexMiddleware = require("./middlewares/index");
 const usersMiddleware = require("./middlewares/users/index");
+const sneakersMiddleware = require("./middlewares/sneakers/index");
 
 const app = express();
 
@@ -19,8 +19,9 @@ app.use(cookieParser());
 
 app.use("/", indexMiddleware);
 app.use("/users", usersMiddleware);
+app.use("/sneakers", sneakersMiddleware);
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
   res.status(err.status || 500).send({
