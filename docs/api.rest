@@ -3,3 +3,31 @@ GET http://localhost:8000
 
 ### Seed sneakers
 POST http://localhost:8000/sneakers/seed
+
+### Register
+POST http://localhost:8000/users/register
+
+### Login existing user
+POST http://localhost:8000/users/login
+Content-Type: application/json
+
+{
+  "email": "jonathan@jonathan.com",
+  "password": "jonathan"
+}
+
+### Create a new sneaker
+POST http://localhost:8000/sneakers
+Content-Type: application/json
+Authorization: Bearer {token}
+
+{
+  "name": "Jordan 1 Retro High Hot Punch (W)",
+  "imageUrl": "/images/air-jordan-1-retro-high-hot-punch-w.jpg",
+  "style": "AQ9131-600",
+  "colorway": "HOT PUNCH/VOLT-BLACK",
+  "retailPrice": 145,
+  "releaseDate": "2018-12-31T17:00:00.000Z",
+  "size": "9.5 US",
+  "location": "Jakarta, Indonesia"
+}
