@@ -24,19 +24,19 @@ const sneakersControllers = {
   },
 
   create: async (req, res) => {
-    try {
-      console.log(req.file);
+    // Should also check req.body and req.decoded before continuing
 
+    try {
       const sneaker = await Sneaker.create({
-        imageUrl: `/uploads/${req.file.filename}` || "",
-        name: req.body.name || "dummy",
-        style: req.body.style || "dummy",
-        colorway: req.body.colorway || "dummy",
-        retailPrice: req.body.retailPrice || 100,
-        releaseDate: req.body.releaseDate || "2020-01-01",
-        size: req.body.size || "4.5",
-        location: req.body.location || "Canada",
-        user: req.decoded.sub || "",
+        imageUrl: `/uploads/${req.file.filename}`,
+        name: "dummy",
+        style: "dummy",
+        colorway: "dummy",
+        retailPrice: 100,
+        releaseDate: "2020-01-01",
+        size: "10",
+        location: "Canada",
+        user: req.decoded.sub,
       });
 
       const user = await User.findOneAndUpdate(
@@ -53,8 +53,10 @@ const sneakersControllers = {
         user: user,
       });
     } catch (error) {
+      console.log(error);
       res.status(400).send({
         message: "Failed to create new sneaker",
+        error: error,
       });
     }
   },
