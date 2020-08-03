@@ -15,6 +15,13 @@ GET http://localhost:8000/users/2
 
 ### Register
 POST http://localhost:8000/users/register
+Content-Type: application/json
+
+{
+  "username": "jonathan",
+  "email": "jonathan@jonathan.com",
+  "password": "jonathan"
+}
 
 ### Login existing user
 POST http://localhost:8000/users/login
