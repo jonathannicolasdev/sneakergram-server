@@ -52,7 +52,11 @@ const sneakersControllers = {
         body: req.body,
         user: user,
       });
-    } catch (error) {}
+    } catch (error) {
+      res.status(400).send({
+        message: "Failed to create new sneaker",
+      });
+    }
   },
 };
 

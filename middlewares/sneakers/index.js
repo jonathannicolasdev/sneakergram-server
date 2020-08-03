@@ -7,9 +7,7 @@ const auth = require("../auth/controllers");
 const { upload } = require("../../utils/multer");
 
 router.post("/seed", sneakers.seed);
-router.post("/");
 router.get("/", sneakers.getAll);
-
 router.post(
   "/",
   auth.isAuthenticated, // check token
