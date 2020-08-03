@@ -28,7 +28,7 @@ const sneakersControllers = {
       console.log(req.file);
 
       const sneaker = await Sneaker.create({
-        imageUrl: `/uploads/${req.file.filename}` || "";
+        imageUrl: `/uploads/${req.file.filename}` || "",
         name: req.body.name || "dummy",
         style: req.body.style || "dummy",
         colorway: req.body.colorway || "dummy",
