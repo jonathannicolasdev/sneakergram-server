@@ -24,29 +24,35 @@ const sneakersControllers = {
   },
 
   create: async (req, res) => {
-    const sneaker = await Sneaker.create({
-      name: req.body.name || "",
-      imageUrl: req.body.imageUrl || "",
-      style: req.body.style || "",
-      colorway: req.body.colorway || "",
-      retailPrice: req.body.retailPrice || "",
-      releaseDate: req.body.releaseDate || "",
-      size: req.body.size || "",
-      location: req.body.location || "",
-      user: req.decoded.sub,
-    });
+    try {
+      console.log(req.file);
 
-    const user = await User.findOneAndUpdate(
-      { _id: sneaker.user },
-      { $push: { sneakers: sneaker._id } },
-      { new: true, select: "-password -salt" }
-    );
+      const sneaker = await Sneaker.create({
+        imageUrl: `/uploads/${req.file.filename}` || "";
+        name: req.body.name || "dummy",
+        style: req.body.style || "dummy",
+        colorway: req.body.colorway || "dummy",
+        retailPrice: req.body.retailPrice || 100,
+        releaseDate: req.body.releaseDate || "2020-01-01",
+        size: req.body.size || "4.5",
+        location: req.body.location || "Canada",
+        user: req.decoded.sub || "",
+      });
 
-    res.status(201).send({
-      message: "Create new sneaker",
-      sneaker: sneaker,
-      user: user,
-    });
+      const user = await User.findOneAndUpdate(
+        { _id: sneaker.user },
+        { $push: { sneakers: sneaker._id } },
+        { new: true, select: "-password -salt" }
+      );
+
+      res.status(201).send({
+        message: "Create new sneaker",
+        sneaker: sneaker,
+        file: req.file,
+        body: req.body,
+        user: user,
+      });
+    } catch (error) {}
   },
 };
 
