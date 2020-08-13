@@ -29,13 +29,13 @@ const sneakersControllers = {
     try {
       const sneaker = await Sneaker.create({
         imageUrl: `/uploads/${req.file.filename}`,
-        name: "dummy",
-        style: "dummy",
-        colorway: "dummy",
-        retailPrice: 100,
-        releaseDate: "2020-01-01",
-        size: "10",
-        location: "Canada",
+        name: req.body.name,
+        style: req.body.style,
+        colorway: req.body.colorway,
+        retailPrice: req.body.retailPrice,
+        releaseDate: req.body.releaseDate,
+        size: req.body.size,
+        location: req.body.location,
         user: req.decoded.sub,
       });
 
