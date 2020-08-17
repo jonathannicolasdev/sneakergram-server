@@ -23,12 +23,4 @@ app.use("/", indexMiddleware);
 app.use("/users", usersMiddleware);
 app.use("/sneakers", sneakersMiddleware);
 
-app.use((err, req, res) => {
-  // res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  res.status(err.status || 500).send({
-    error: err,
-  });
-});
-
 module.exports = app;
