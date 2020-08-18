@@ -9,6 +9,7 @@ module.exports = {
       sub: foundUser._id, // sub: subject: user's _id
       name: foundUser.name, // name: user's full name
       email: foundUser.email, // email: user's email
+      username: foundUser.username, // username
       // iat: issued at: will be created automatically as UNIX timestamp
     };
 

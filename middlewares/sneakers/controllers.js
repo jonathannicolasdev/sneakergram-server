@@ -53,7 +53,6 @@ const sneakersControllers = {
         user: user,
       });
     } catch (error) {
-      console.log(error);
       res.status(400).send({
         message: "Failed to create new sneaker",
         error: error,
