@@ -145,10 +145,10 @@ const usersControllers = {
   },
 
   //////////////////////////////////////////////////////////////////////////////
-  // GET ONE USER BY ID
-  getOneById: async (req, res) => {
+  // GET ONE USER BY USERNAME
+  getOneByUsername: async (req, res) => {
     const user = await User.findOne(
-      { id: req.params.id },
+      { username: req.params.username },
       "-password -salt"
     ).populate({
       path: "sneakers",
@@ -156,12 +156,12 @@ const usersControllers = {
 
     if (user) {
       res.status(200).send({
-        message: "Get one user by id",
+        message: "Get one user by username",
         user: user,
       });
     } else {
       res.status(404).send({
-        message: "User not found by that id",
+        message: "User not found by that username",
       });
     }
   },
