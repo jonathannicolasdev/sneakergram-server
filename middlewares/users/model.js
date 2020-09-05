@@ -31,6 +31,7 @@ const UserSchema = Schema(
     },
     avatarUrl: {
       type: String,
+      default: `${process.env.API_URL}/images/avatar.png`,
     },
     bio: {
       type: String,
