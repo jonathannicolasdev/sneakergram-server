@@ -28,7 +28,7 @@ const sneakersControllers = {
 
     try {
       const sneaker = await Sneaker.create({
-        imageUrl: `/uploads/${req.file.filename}`,
+        imageUrl: `${process.env.API_URL}/uploads/${req.file.filename}`,
         name: req.body.name,
         style: req.body.style,
         colorway: req.body.colorway,
