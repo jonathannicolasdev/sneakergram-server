@@ -98,9 +98,19 @@ const usersControllers = {
   //////////////////////////////////////////////////////////////////////////////
   // LOGOUT WITH LOGGED IN USER
   logout: async (req, res) => {
-    res.status(200).send({
-      message: "Logged out the user",
-    });
+    const decodedUser = req.decoded;
+
+    if (decodedUser.sub) {
+      await User.findById(decodedUser.sub, "-password -salt");
+
+      res.status(200).send({
+        message: "Logged out the user",
+      });
+    } else {
+      res.status(400).send({
+        message: "User is invalid without verified token",
+      });
+    }
   },
 
   //////////////////////////////////////////////////////////////////////////////
@@ -203,7 +213,7 @@ const usersControllers = {
 
   //////////////////////////////////////////////////////////////////////////////
   // SEARCH USERS BY NAME
-  searchByName: async (req, res, next) => {
+  searchByName: async (req, res) => {
     const name = req.query.name;
 
     if (name) {

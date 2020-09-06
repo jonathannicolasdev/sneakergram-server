@@ -20,6 +20,10 @@ router.post("/register", auth.isUserExist, users.register);
 router.post("/login", users.login);
 
 ////////////////////////////////////////////////////////////////////////////////
+// (POST) Logout user
+router.post("/logout", auth.isAuthenticated, users.logout);
+
+////////////////////////////////////////////////////////////////////////////////
 // (POST) Seed initial users
 router.post("/seed", users.seedUsers);
 
