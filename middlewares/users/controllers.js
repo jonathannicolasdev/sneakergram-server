@@ -157,9 +157,10 @@ const usersControllers = {
 
   //////////////////////////////////////////////////////////////////////////////
   // GET ONE USER BY USERNAME
+
   getOneByUsername: async (req, res) => {
     const user = await User.findOne(
-      { username: req.params.username },
+      { username: { $regex: new RegExp(req.params.username, "i") } },
       "-password -salt"
     ).populate({
       path: "sneakers",
