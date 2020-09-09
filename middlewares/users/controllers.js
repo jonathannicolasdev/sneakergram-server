@@ -18,6 +18,7 @@ const usersControllers = {
 
       // creating an object is a fast process
       const newUser = {
+        name: req.body.name,
         username: req.body.username, // from body
         email: req.body.email, // from body
         salt: salt, // NOT from body, from helpers
